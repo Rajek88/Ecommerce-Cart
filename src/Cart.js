@@ -58,6 +58,25 @@ export default class Cart extends React.Component {
         })
     }
 
+    handleDecrease = (product) => {
+        // get the arry of all the products from the state
+        const { products } = this.state
+
+        //now find the index of product whose qty we need to increase
+        const index = products.indexOf(product)
+        //check if the product qty is already zero
+        if (products[index].qty === 0) {
+            return
+        }
+        console.log('Hey decrease product qty : ', product)
+        products[index].qty = products[index].qty - 1
+        products[index].price = products[index].qty * products[index].basePrice
+        this.setState({
+            products: products,
+            // we can simply put 'products' only as key and value both are same
+        })
+    }
+
     render() {
         const { products } = this.state
         return (
@@ -68,6 +87,7 @@ export default class Cart extends React.Component {
                             product={product}
                             key={product.id}
                             onIncreaseQty={this.handleIncrease}
+                            onDecreaseQty={this.handleDecrease}
                         />
                     )
                 })}
