@@ -10,18 +10,6 @@ const styles = {
 }
 
 class CartItem extends React.Component{
-    constructor(){
-        //whenever u use constructor for a class that extends React.Component, you need to call super() at very first moment 
-        //it is constructor for the method from which current class is extended
-        super();
-        this.state = {
-            price : 9999,
-            title : 'Phone',
-            qty : 1,
-            img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYzbEXLNrRpw0qf3HjHT8MuuGpei9Fz8pYw&usqp=CAU',
-        }
-
-    }
 
     Increase = () => {
         console.log('this.state :: ',this.state);
@@ -48,11 +36,11 @@ class CartItem extends React.Component{
     }
 
     render(){
-        const { price, title, qty, img} = this.state;
+        const { price, title, qty, img} = this.props.product;
         return (
             <div className="cart-item">
                 <div className="left-block">
-                    <img src={img} style={styles.img} alt="Samsung Galaxy M52 5G"/>
+                    <img src={img} style={styles.img} alt={title}/>
                 </div>
                 <div className="right-block">
                     <div style={{ fontSize:25}}>{title}</div>
