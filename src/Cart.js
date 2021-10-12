@@ -17,6 +17,14 @@ export default class Cart extends React.Component {
                     id: 1,
                 },
                 {
+                    price: 25999,
+                    basePrice: 25999,
+                    title: 'Samsung M52 5G',
+                    qty: 1,
+                    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYzbEXLNrRpw0qf3HjHT8MuuGpei9Fz8pYw&usqp=CAU',
+                    id: 5,
+                },
+                {
                     basePrice: 78999,
                     price: 78999,
                     title: 'Lenovo Legion 5',
@@ -77,6 +85,19 @@ export default class Cart extends React.Component {
         })
     }
 
+    handleDelete = (product) => {
+        // get the arry of all the products from the state
+        const { products } = this.state
+
+        //now find the index of product whose qty we need to delete
+        const index = products.indexOf(product)
+        //delete the product from array
+        products.splice(index, 1)
+        this.setState({
+            products: products,
+        })
+    }
+
     render() {
         const { products } = this.state
         return (
@@ -88,6 +109,7 @@ export default class Cart extends React.Component {
                             key={product.id}
                             onIncreaseQty={this.handleIncrease}
                             onDecreaseQty={this.handleDecrease}
+                            onDelete={this.handleDelete}
                         />
                     )
                 })}

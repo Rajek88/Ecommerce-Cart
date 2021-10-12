@@ -13,6 +13,7 @@ class CartItem extends React.Component {
     render() {
         // Destructure the data from props that the component is getting
         const { price, title, qty, img } = this.props.product
+        const { product, onIncreaseQty, onDecreaseQty, onDelete } = this.props
         console.log('this.props :: ', this.props)
 
         return (
@@ -32,7 +33,7 @@ class CartItem extends React.Component {
                             className="action-icons"
                             alt="increase"
                             onClick={() => {
-                                this.props.onIncreaseQty(this.props.product)
+                                onIncreaseQty(product)
                             }}
                         />
                         <img
@@ -40,13 +41,16 @@ class CartItem extends React.Component {
                             className="action-icons"
                             alt="decrease"
                             onClick={() => {
-                                this.props.onDecreaseQty(this.props.product)
+                                onDecreaseQty(product)
                             }}
                         />
                         <img
                             src="https://cdn-icons-png.flaticon.com/128/1617/1617543.png"
                             className="action-icons"
                             alt="delete"
+                            onClick={() => {
+                                onDelete(product)
+                            }}
                         />
                     </div>
                 </div>
